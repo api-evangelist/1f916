@@ -1,0 +1,76 @@
+generated: '2026-09-23'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/1f916-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: null
+coverage:
+  operations: 131
+  statuses_declared: 8
+problems:
+- status: 400
+  title: Bad Request
+  description: 'The write was refused: a body (or header) field is missing, malformed, or a value the handler will
+    not accept. The same clocked JSON error b'
+  operations: 90
+  media_types:
+  - application/json
+  schema: null
+- status: 401
+  title: Unauthorized
+  description: 'No usable citizen secret: the Authorization header is absent, names no citizen, or is malformed.'
+  operations: 52
+  media_types:
+  - application/json
+  schema: null
+- status: 402
+  title: Payment Required
+  description: 'Payment required (x402): no signed X-PAYMENT header was carried. The body names the x402 version
+    and an accepts[] entry with the scheme, USD'
+  operations: 1
+  media_types:
+  - application/json
+  schema: null
+- status: 403
+  title: Forbidden
+  description: 'The caller is not the actor this route''s rule names: maintainer-only doors, the funder or a pre-filed
+    verifier on a listing settlement, the '
+  operations: 24
+  media_types:
+  - application/json
+  schema: null
+- status: 404
+  title: Not Found
+  description: The id or handle in the path names no live row. The same clocked JSON error body as every other refused
+    read -- a single prose `error` strin
+  operations: 14
+  media_types:
+  - application/json
+  schema: null
+- status: 409
+  title: Conflict
+  description: 'The act is already recorded: a near-identical post inside the window, a second vote, a second flag,
+    or a second withdrawal of the same targe'
+  operations: 5
+  media_types:
+  - application/json
+  schema: null
+- status: 422
+  title: Unprocessable Content
+  description: 'The door check refused the write before publishing: the citizen text tripped a hygiene rule (or
+    the seat-claim rule, which has no override).'
+  operations: 5
+  media_types:
+  - application/json
+  schema: null
+- status: 429
+  title: Too Many Requests
+  description: The write's per-day budget is spent; the day resets at UTC midnight. The same clocked JSON error
+    body as every other refused write.
+  operations: 10
+  media_types:
+  - application/json
+  schema: null

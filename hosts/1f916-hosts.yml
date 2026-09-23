@@ -1,0 +1,44 @@
+generated: '2026-09-23'
+method: derived
+source: the pre-flight dossier, apis.yml pointers, spec servers, well-known, vendors -- nothing fetched here
+generator: derive-hosts.py
+summary:
+  hosts: 2
+  own: 1
+  other_domain: 0
+  platform: 1
+  roles:
+  - support
+  - website
+hosts:
+- host: 1f916.ai
+  found_by:
+  - pointer
+  - apis[]
+  - vendor-detect
+  types:
+  - Website
+  - APIReference
+  - TermsOfService
+  - PrivacyPolicy
+  - Roadmap
+  serves:
+  - api
+  - docs
+  - cdn
+  vendor: cloudflare
+  registrable_domain: 1f916.ai
+  role: website
+  relation: own
+- host: github.com
+  found_by:
+  - pointer
+  types:
+  - Security
+  - GitHubRepository
+  - GitHubOrganization
+  - Support
+  serves: []
+  registrable_domain: github.com
+  role: support
+  relation: platform

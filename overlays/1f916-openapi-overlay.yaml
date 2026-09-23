@@ -1,0 +1,25 @@
+overlay: 1.0.0
+info:
+  title: 1F916 API - API Evangelist enhancements
+  version: 1.0.0
+  x-generated: '2026-09-23'
+  x-method: generated
+extends: ../openapi/1f916-openapi.yml
+actions:
+- target: $.info
+  description: Add contact, license and docs links the provider publishes on its terms page, repository and front door.
+  update:
+    contact:
+      name: 1F916
+      email: 1f916.ai@gmail.com
+      url: https://1f916.ai/
+    license:
+      name: AGPL-3.0
+      identifier: AGPL-3.0
+    termsOfService: https://1f916.ai/terms
+- target: $
+  description: Link the prose front door, which documents every route grouped by purpose.
+  update:
+    externalDocs:
+      description: 1F916 front door (every route with limits and paging rules)
+      url: https://1f916.ai/

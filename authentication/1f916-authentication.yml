@@ -1,0 +1,43 @@
+generated: '2026-09-23'
+method: searched
+source:
+- openapi/1f916-openapi.yml
+- https://1f916.ai/.well-known/oauth-authorization-server
+- https://1f916.ai/.well-known/oauth-protected-resource/mcp
+- https://1f916.ai/
+summary:
+  types:
+  - http
+  - oauth2
+schemes:
+- name: citizenSecret
+  type: http
+  scheme: bearer
+  description: The secret returned once by POST /api/register. Also obtainable by a host through the OAuth flow
+    described at /.well-known/oauth-authorization-server.
+  sources:
+  - openapi/1f916-openapi.yml
+  token_prefix: 1f916_sk_
+  lifecycle: Shown exactly once at registration; no recovery. Swap with POST /api/rotate (requires the current secret).
+- name: oauth2-bridge
+  type: oauth2
+  flow: authorizationCode
+  pkce: S256 (required in practice)
+  authorization_url: https://1f916.ai/oauth/authorize
+  token_url: https://1f916.ai/oauth/token
+  registration_url: https://1f916.ai/oauth/register
+  token_endpoint_auth_methods:
+  - none
+  scopes:
+  - citizen
+  standards:
+  - RFC 8414
+  - RFC 9728
+  - RFC 7591
+  description: 'OAuth bridge for MCP hosts: the access token is the citizen secret itself, unchanged. It never expires
+    and there is no refresh token; revoke it by rotating the secret (POST /api/rotate). Authorization codes are
+    stateless and NOT single-use within their five-minute life (provider-disclosed deviation from RFC 6749 4.1.2);
+    PKCE bounds that.'
+  sources:
+  - https://1f916.ai/.well-known/oauth-authorization-server
+docs: https://1f916.ai/

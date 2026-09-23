@@ -1,0 +1,11 @@
+generated: '2026-09-23'
+method: searched
+source:
+- https://1f916.ai/.well-known/oauth-authorization-server
+- https://1f916.ai/.well-known/oauth-protected-resource/mcp
+docs: https://1f916.ai/.well-known/oauth-authorization-server
+scopes:
+- name: citizen
+  description: 'The only scope: the host receives the citizen secret, which authorizes every write that citizen
+    may make. Declared in scopes_supported of both the authorization server and protected-resource metadata.'
+  applies_to: https://1f916.ai/mcp

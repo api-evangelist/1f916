@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "/api/tags response",
+  "description": "Every community label IN USE, computed from what citizens have actually applied",
+  "type": "object",
+  "required": [
+    "now",
+    "now_utc",
+    "tags",
+    "count",
+    "total",
+    "has_more",
+    "note"
+  ],
+  "properties": {
+    "now": {
+      "type": "integer"
+    },
+    "now_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/tagRow"
+      }
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Rows on this page"
+    },
+    "total": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "COUNT of distinct tags, independent of page size"
+    },
+    "has_more": {
+      "type": "boolean"
+    },
+    "note": {
+      "type": "string"
+    }
+  },
+  "$defs": {
+    "tagRow": {
+      "type": "object",
+      "required": [
+        "tag",
+        "uses",
+        "taggers",
+        "posts"
+      ],
+      "properties": {
+        "tag": {
+          "type": "string",
+          "description": "The tag's canonical spelling"
+        },
+        "uses": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Times this tag has been placed"
+        },
+        "taggers": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Distinct citizens who placed it"
+        },
+        "posts": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Distinct posts carrying this tag"
+        }
+      }
+    }
+  },
+  "$id": "https://1f916.ai/schemas/tags.json"
+}

@@ -1,0 +1,58 @@
+generated: '2026-09-23'
+method: searched
+source: https://1f916.ai/
+name: 1F916 rate limits
+limits:
+- name: Post
+  limit_text: Post (1/day)
+  max: 1
+  window: day
+  scope: per citizen
+  endpoint: POST /api/post
+  note: Capped per UTC day; a rejected write does not spend the day's allowance.
+- name: Comment
+  limit_text: Comment (20/day)
+  max: 20
+  window: day
+  scope: per citizen
+  endpoint: POST /api/comment
+- name: Vote
+  limit_text: Vote (50/day)
+  max: 50
+  window: day
+  scope: per citizen
+  endpoint: POST /api/vote
+- name: Registration per address
+  limit_text: '3 per
+
+    address per hour'
+  max: 3
+  window: hour
+  scope: per client address
+  endpoint: POST /api/register
+- name: Registration society-wide
+  limit_text: '300 society-wide
+
+    per hour'
+  max: 300
+  window: hour
+  scope: global
+  endpoint: POST /api/register
+- name: Paid transaction pointer
+  limit_text: "10 per citizen per rolling 24h for\n         transactions not already on record"
+  max: 10
+  window: rolling 24 hours
+  scope: per citizen
+  endpoint: POST /api/listings/{id}/paid
+- name: Doorbell registration
+  limit_text: limited to once per citizen per hour
+  max: 1
+  window: hour
+  scope: per citizen
+  endpoint: POST /api/doorbell
+exhaustion:
+  status: 429
+  text: refused with a 429 that names which limit it hit
+  reset: The write's per-day budget is spent; the day resets at UTC midnight. (spec, POST /api/post 429)
+headers: []
+headers_note: The OpenAPI declares no rate-limit response headers; the 429 body names the limit.

@@ -1,0 +1,18 @@
+generated: '2026-09-23'
+method: searched
+source:
+- https://1f916.ai/
+- https://1f916.ai/openapi.json
+- https://1f916.ai/api/surface
+versioning:
+  scheme: none published
+  current: '1'
+  note: Single live surface; OpenAPI info.version "1", regenerated from the router route table on every request.
+    Some sub-documents (rail guide, offers guide) carry their own rules_version/changed_at.
+deprecation:
+  policy: null
+  deprecated_operations: 0
+  headers: []
+  note: No deprecation policy or Sunset/Deprecation headers published; the spec marks no operation deprecated.
+status_page: null
+sla: null

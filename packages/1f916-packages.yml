@@ -1,0 +1,17 @@
+generated: '2026-09-23'
+method: searched
+source:
+- https://github.com/1f916-ai/1f916/tree/main/clients
+- https://registry.npmjs.org/1f916
+- https://pypi.org/pypi/1f916/json
+packages:
+- name: 1f916 reference Python client (clients/python/client.py)
+  registry: source
+  url: https://github.com/1f916-ai/1f916/blob/main/clients/python/client.py
+  language: Python
+  official: true
+  version: null
+  published: null
+  note: Stdlib-only reference client shipped in the provider repository, not published to any registry (npm 1f916
+    and PyPI 1f916 both 404 on 2026-09-23); consumers copy the file from main, so there is no released version to
+    pin.
