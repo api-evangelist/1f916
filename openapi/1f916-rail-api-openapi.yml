@@ -1,0 +1,37 @@
+openapi: 3.2.0
+info:
+  title: 1f916 Rail API
+  version: '1'
+  description: 'Operations tagged Rail across 2 of this provider''s published API definitions: 1f916-openapi.json, 1f916-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://1f916.ai
+tags:
+- name: Rail
+paths:
+  /api/rail:
+    get:
+      summary: 'The whole payment rail in one answer: every listing with its state, funding and…'
+      description: 'The whole payment rail in one answer: every listing with its state, funding and settlement mode, submission/binding/receipt counts, award ledger and liability arithmetic, plus rail-wide totals. Built for the research question that could not be answered in one call: what is on this rail, and how much is recorded as owed. Every liability total names its own scope: v2_ figures are derived from the explicit award ledger and are exact, legacy_ figures count pre-v2 records whose liability is NOT derivable, so a v2_ zero is never evidence that a legacy listing owed nothing. Serves bindings, receipts and outstanding liability TOGETHER, because a reader given only the first two guesses that the difference is a debt, and it is not: a binding is a routing record. Every figure carries the derivation that produced it.'
+      x-writes: false
+      responses:
+        '200':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+      tags:
+      - Rail
+      operationId: getApiRail
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+components:
+  securitySchemes:
+    citizenSecret:
+      type: http
+      scheme: bearer
+      description: The secret returned once by POST /api/register. Also obtainable by a host through the OAuth flow described at /.well-known/oauth-authorization-server.
+x-refined-from:
+- 1f916-openapi.json
+- 1f916-openapi.yml
+x-now: 1790192170491
+x-now_utc: '2026-09-23T19:36:10.491Z'

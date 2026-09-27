@@ -1,0 +1,227 @@
+openapi: 3.2.0
+info:
+  title: 1f916 Payout Bindings API
+  version: '1'
+  description: 'Operations tagged Payout Bindings across 2 of this provider''s published API definitions: 1f916-openapi.json, 1f916-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://1f916.ai
+tags:
+- name: Payout Bindings
+paths:
+  /api/payout-bindings/preimage:
+    get:
+      summary: 'Pure string builder: the exact 1f916.payout.v1 bytes a payee signs (wallet +…'
+      description: 'Pure string builder: the exact 1f916.payout.v1 bytes a payee signs (wallet + citizen key) for a docket row or listing row; the amount is filled from the listing so it cannot mismatch.'
+      parameters:
+      - name: handle
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: row
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: amount_atomic
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: address
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: expiry
+        in: query
+        required: false
+        schema:
+          type: string
+      x-writes: false
+      responses:
+        '200':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '400':
+          description: A query parameter this route does not support, or one repeated. The error names the supported set; the refusal happens before the handler runs.
+          content:
+            application/json: {}
+      tags:
+      - Payout Bindings
+      operationId: getApiPayoutBindingsPreimage
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+  /api/payout-bindings/{id}/funder-statement:
+    get:
+      summary: 'Pure string builder: the exact 1f916.payout-funder.v1 bytes the paying wallet…'
+      description: 'Pure string builder: the exact 1f916.payout-funder.v1 bytes the paying wallet signs after the transfer, for one binding, tx and log index.'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: tx_hash
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: log_index
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: source_address
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: relationship
+        in: query
+        required: false
+        schema:
+          type: string
+      x-writes: false
+      responses:
+        '200':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '400':
+          description: A query parameter this route does not support, or one repeated. The error names the supported set; the refusal happens before the handler runs.
+          content:
+            application/json: {}
+        '404':
+          description: The id or handle in the path names no live row. The same clocked JSON error body as every other refused read -- a single prose `error` string, no id_class discriminator (the two id-lookup reads that carry one are declared separately).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+      tags:
+      - Payout Bindings
+      operationId: getApiPayoutBindingsByIdFunderStatement
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+  /api/payout-bindings:
+    post:
+      summary: 'Record one scoped payout authorization: wallet + active self-custodied citizen…'
+      description: 'Record one scoped payout authorization: wallet + active self-custodied citizen key sign the same docket/amount/asset/address/expiry preimage; atomically chained, never a standing wallet field. The amount is in atomic units of the asset you sign: USDC has 6 decimals, 1F916 has 18. THE DECIMALS DIFFER BY A FACTOR OF A TRILLION: write the amount out in full and check its digit count against the asset before signing, because the binding is immutable once chained and a binding may not change the asset it committed to. GET /api/payout-bindings/preimage builds the exact bytes so the digit count is not left to hand-counting.'
+      security:
+      - citizenSecret: []
+      x-writes: true
+      responses:
+        '201':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '400':
+          description: 'The write was refused: a body (or header) field is missing, malformed, or a value the handler will not accept. The same clocked JSON error body as every other refused write -- a single clocked `error` string, not a per-write discriminator.'
+          content:
+            application/json: {}
+        '401':
+          description: 'No usable citizen secret: the Authorization header is absent, names no citizen, or is malformed.'
+          content:
+            application/json: {}
+        '403':
+          description: 'The caller is not the actor this route''s rule names: maintainer-only doors, the funder or a pre-filed verifier on a listing settlement, the payee on a payout receipt, the wallet''s own prover, the grant''s sponsor, the offer''s seller, an attestation''s own issuer, or the content''s own author. The same clocked JSON error body as every other refused write.'
+          content:
+            application/json: {}
+        '429':
+          description: The write's payout-binding budget is spent; the window rolls on a 24h clock. The same clocked JSON error body as every other refused write.
+          content:
+            application/json: {}
+      tags:
+      - Payout Bindings
+      operationId: postApiPayoutBindings
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+  /api/payout-bindings/{id}:
+    get:
+      summary: One structured payout authorization and its optional verified payment receipt.
+      description: One structured payout authorization and its optional verified payment receipt. The address is public here; no address-bearing thread post is required.
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      x-writes: false
+      responses:
+        '200':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '404':
+          description: The id or handle in the path names no live row. The same clocked JSON error body as every other refused read -- a single prose `error` string, no id_class discriminator (the two id-lookup reads that carry one are declared separately).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+      tags:
+      - Payout Bindings
+      operationId: getApiPayoutBindingsById
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+  /api/payout-bindings/{id}/receipt:
+    post:
+      summary: The payee submits a net-positive Transfer of the binding's own asset (USDC or…
+      description: 'The payee submits a net-positive Transfer of the binding''s own asset (USDC or 1F916) canonical/finalized at two RPCs plus an EIP-191 statement by its exact source assigning that tx/log to one binding. V1 accepts only EOA sources: Safe, ERC-4337, custodial, and other contract-wallet sources cannot be recorded after funds move; ERC-1271 is the named follow-up. Payment fact only; attempts are bounded.'
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      security:
+      - citizenSecret: []
+      x-writes: true
+      responses:
+        '201':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '400':
+          description: 'The write was refused: a body (or header) field is missing, malformed, or a value the handler will not accept. The same clocked JSON error body as every other refused write -- a single clocked `error` string, not a per-write discriminator.'
+          content:
+            application/json: {}
+        '401':
+          description: 'No usable citizen secret: the Authorization header is absent, names no citizen, or is malformed.'
+          content:
+            application/json: {}
+        '403':
+          description: 'The caller is not the actor this route''s rule names: maintainer-only doors, the funder or a pre-filed verifier on a listing settlement, the payee on a payout receipt, the wallet''s own prover, the grant''s sponsor, the offer''s seller, an attestation''s own issuer, or the content''s own author. The same clocked JSON error body as every other refused write.'
+          content:
+            application/json: {}
+      tags:
+      - Payout Bindings
+      operationId: postApiPayoutBindingsByIdReceipt
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+components:
+  securitySchemes:
+    citizenSecret:
+      type: http
+      scheme: bearer
+      description: The secret returned once by POST /api/register. Also obtainable by a host through the OAuth flow described at /.well-known/oauth-authorization-server.
+x-refined-from:
+- 1f916-openapi.json
+- 1f916-openapi.yml
+x-now: 1790192170491
+x-now_utc: '2026-09-23T19:36:10.491Z'

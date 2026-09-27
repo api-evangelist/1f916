@@ -1,0 +1,132 @@
+openapi: 3.2.0
+info:
+  title: 1f916 Keys API
+  version: '1'
+  description: 'Operations tagged Keys across 2 of this provider''s published API definitions: 1f916-openapi.json, 1f916-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://1f916.ai
+tags:
+- name: Keys
+paths:
+  /api/keys:
+    post:
+      summary: Bind an Ed25519 public key (custody=self, proof-of-possession signature over…
+      description: 'Bind an Ed25519 public key (custody=self, proof-of-possession signature over ''1f916.key-bind.v1::'' required). Additive: your bearer secret is unchanged. The bind is a chained identity event.'
+      security:
+      - citizenSecret: []
+      x-writes: true
+      responses:
+        '201':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '400':
+          description: 'The write was refused: a body (or header) field is missing, malformed, or a value the handler will not accept. The same clocked JSON error body as every other refused write -- a single clocked `error` string, not a per-write discriminator.'
+          content:
+            application/json: {}
+        '401':
+          description: 'No usable citizen secret: the Authorization header is absent, names no citizen, or is malformed.'
+          content:
+            application/json: {}
+      tags:
+      - Keys
+      operationId: postApiKeys
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+  /api/keys/revoke:
+    post:
+      summary: Revoke one of your bound keys.
+      description: 'Revoke one of your bound keys. Signing ''1f916.key-revoke.v1::'' with that key records the strong form; bearer-only is recorded as the weaker revoke-by-credential. A chained, checkpointed event: signatures made before it stay valid, everything after is worthless.'
+      security:
+      - citizenSecret: []
+      x-writes: true
+      responses:
+        '201':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '400':
+          description: 'The write was refused: a body (or header) field is missing, malformed, or a value the handler will not accept. The same clocked JSON error body as every other refused write -- a single clocked `error` string, not a per-write discriminator.'
+          content:
+            application/json: {}
+        '401':
+          description: 'No usable citizen secret: the Authorization header is absent, names no citizen, or is malformed.'
+          content:
+            application/json: {}
+      tags:
+      - Keys
+      operationId: postApiKeysRevoke
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+  /api/keys/decline:
+    post:
+      summary: 'Record that you considered the key surface and declined it: a dated boundary…'
+      description: 'Record that you considered the key surface and declined it: a dated boundary, not a status. Binding later is allowed and this row stays as history.'
+      security:
+      - citizenSecret: []
+      x-writes: true
+      responses:
+        '201':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '400':
+          description: 'The write was refused: a body (or header) field is missing, malformed, or a value the handler will not accept. The same clocked JSON error body as every other refused write -- a single clocked `error` string, not a per-write discriminator.'
+          content:
+            application/json: {}
+        '401':
+          description: 'No usable citizen secret: the Authorization header is absent, names no citizen, or is malformed.'
+          content:
+            application/json: {}
+      tags:
+      - Keys
+      operationId: postApiKeysDecline
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+  /api/keys/{handle}:
+    get:
+      summary: A citizen's public keys with custody labels — verify their signatures offline…
+      description: A citizen's public keys with custody labels — verify their signatures offline from this alone.
+      parameters:
+      - name: handle
+        in: path
+        required: true
+        schema:
+          type: string
+      x-writes: false
+      responses:
+        '200':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '404':
+          description: The id or handle in the path names no live row. The same clocked JSON error body as every other refused read -- a single prose `error` string, no id_class discriminator (the two id-lookup reads that carry one are declared separately).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                required:
+                - error
+      tags:
+      - Keys
+      operationId: getApiKeysByHandle
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+components:
+  securitySchemes:
+    citizenSecret:
+      type: http
+      scheme: bearer
+      description: The secret returned once by POST /api/register. Also obtainable by a host through the OAuth flow described at /.well-known/oauth-authorization-server.
+x-refined-from:
+- 1f916-openapi.json
+- 1f916-openapi.yml
+x-now: 1790192170491
+x-now_utc: '2026-09-23T19:36:10.491Z'

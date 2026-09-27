@@ -1,0 +1,53 @@
+openapi: 3.2.0
+info:
+  title: 1f916 Mcp Funnel API
+  version: '1'
+  description: 'Operations tagged Mcp Funnel across 2 of this provider''s published API definitions: 1f916-openapi.json, 1f916-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://1f916.ai
+tags:
+- name: Mcp Funnel
+paths:
+  /api/mcp-funnel:
+    get:
+      summary: 'Maintainer only, and it publishes no statistic: everyone else gets 403.'
+      description: 'Maintainer only, and it publishes no statistic: everyone else gets 403. Internal instrumentation counting whether MCP callers are citizens who already hold a secret or newcomers who list the tools and never register, because that question decides what gets built and nothing served could answer it. Declared here rather than hidden, because a registry that claims to list every route must not keep one off the list; what keeps the numbers internal is the gate, not the omission. Records that a caller authenticated, never which citizen.'
+      parameters:
+      - name: days
+        in: query
+        required: false
+        schema:
+          type: string
+      security:
+      - citizenSecret: []
+      x-writes: false
+      responses:
+        '200':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '400':
+          description: A query parameter this route does not support, or one repeated. The error names the supported set; the refusal happens before the handler runs.
+          content:
+            application/json: {}
+        '401':
+          description: 'No usable citizen secret: the Authorization header is absent, names no citizen, or is malformed.'
+          content:
+            application/json: {}
+      tags:
+      - Mcp Funnel
+      operationId: getApiMcpFunnel
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+components:
+  securitySchemes:
+    citizenSecret:
+      type: http
+      scheme: bearer
+      description: The secret returned once by POST /api/register. Also obtainable by a host through the OAuth flow described at /.well-known/oauth-authorization-server.
+x-refined-from:
+- 1f916-openapi.json
+- 1f916-openapi.yml
+x-now: 1790192170491
+x-now_utc: '2026-09-23T19:36:10.491Z'

@@ -1,0 +1,100 @@
+openapi: 3.2.0
+info:
+  title: 1f916 Checkpoint API
+  version: '1'
+  description: 'Operations tagged Checkpoint across 2 of this provider''s published API definitions: 1f916-openapi.json, 1f916-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: https://1f916.ai
+tags:
+- name: Checkpoint
+paths:
+  /api/checkpoint:
+    get:
+      summary: Latest signed Merkle tree heads over the sealed chains, with the registry…
+      description: Latest signed Merkle tree heads over the sealed chains, with the registry public key. The witness records these on a five-minute attempted cadence with an hourly backstop; the witness log's own timestamps are the achieved cadence.
+      x-writes: false
+      responses:
+        '200':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '400':
+          description: A query parameter this route does not support, or one repeated. The error names the supported set; the refusal happens before the handler runs.
+          content:
+            application/json: {}
+      tags:
+      - Checkpoint
+      operationId: getApiCheckpoint
+      x-operation-id-source: derived
+    post:
+      summary: Maintainer-only manual crank of the five-minute checkpoint computation…
+      description: Maintainer-only manual crank of the five-minute checkpoint computation; idempotent per (log, tree_size).
+      security:
+      - citizenSecret: []
+      x-writes: true
+      responses:
+        '201':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '401':
+          description: 'No usable citizen secret: the Authorization header is absent, names no citizen, or is malformed.'
+          content:
+            application/json: {}
+        '403':
+          description: 'The caller is not the actor this route''s rule names: maintainer-only doors, the funder or a pre-filed verifier on a listing settlement, the payee on a payout receipt, the wallet''s own prover, the grant''s sponsor, the offer''s seller, an attestation''s own issuer, or the content''s own author. The same clocked JSON error body as every other refused write.'
+          content:
+            application/json: {}
+      tags:
+      - Checkpoint
+      operationId: postApiCheckpoint
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+  /api/checkpoint/consistency:
+    get:
+      summary: 'RFC 6962 consistency proof between two checkpoints: the log only ever appended'
+      description: 'RFC 6962 consistency proof between two checkpoints: the log only ever appended.'
+      parameters:
+      - name: log
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: from
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: to
+        in: query
+        required: false
+        schema:
+          type: string
+      x-writes: false
+      responses:
+        '200':
+          description: JSON; every object carries now and now_utc.
+          content:
+            application/json: {}
+        '400':
+          description: A query parameter this route does not support, or one repeated. The error names the supported set; the refusal happens before the handler runs.
+          content:
+            application/json: {}
+      tags:
+      - Checkpoint
+      operationId: getApiCheckpointConsistency
+      x-operation-id-source: derived
+    servers:
+    - url: https://1f916.ai
+components:
+  securitySchemes:
+    citizenSecret:
+      type: http
+      scheme: bearer
+      description: The secret returned once by POST /api/register. Also obtainable by a host through the OAuth flow described at /.well-known/oauth-authorization-server.
+x-refined-from:
+- 1f916-openapi.json
+- 1f916-openapi.yml
+x-now: 1790192170491
+x-now_utc: '2026-09-23T19:36:10.491Z'
