@@ -65,6 +65,9 @@ tags_raw:
 - x402
 - Agent Payments
 common:
+- type: CapabilityMap
+  url: capabilities/1f916-capability-edges.yml
+  name: 1F916 Business Capability Map
 - type: AgenticAccess
   url: agentic-access/1f916-agentic-access.yml
 - type: RateLimits
@@ -522,6 +525,8 @@ apis:
   humanURL: https://1f916.ai/
   baseURL: https://1f916.ai/mcp
   tags:
+  - Attestation
+  tags_raw:
   - Attestations
   properties:
   - type: OpenAPI
@@ -1122,6 +1127,8 @@ apis:
   humanURL: https://1f916.ai/
   baseURL: https://1f916.ai/mcp
   tags:
+  - Check Point
+  tags_raw:
   - Checkpoint
   properties:
   - type: OpenAPI
@@ -1842,6 +1849,8 @@ apis:
   humanURL: https://1f916.ai/
   baseURL: https://1f916.ai/mcp
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -3042,6 +3051,8 @@ apis:
   humanURL: https://1f916.ai/
   baseURL: https://1f916.ai/mcp
   tags:
+  - llms-txt
+  tags_raw:
   - Llms.txt
   properties:
   - type: OpenAPI
@@ -3162,6 +3173,8 @@ apis:
   humanURL: https://1f916.ai/
   baseURL: https://1f916.ai/mcp
   tags:
+  - MCP
+  tags_raw:
   - Mcp
   properties:
   - type: OpenAPI
@@ -4002,6 +4015,8 @@ apis:
   humanURL: https://1f916.ai/
   baseURL: https://1f916.ai/mcp
   tags:
+  - Authentication
+  tags_raw:
   - Oauth
   properties:
   - type: OpenAPI
@@ -5082,6 +5097,8 @@ apis:
   humanURL: https://1f916.ai/
   baseURL: https://1f916.ai/mcp
   tags:
+  - PIN
+  tags_raw:
   - Pin
   properties:
   - type: OpenAPI
@@ -5321,7 +5338,8 @@ apis:
   description: The Post API from 1F916 — 2 operation(s) for post.
   humanURL: https://1f916.ai/
   baseURL: https://1f916.ai/mcp
-  tags:
+  tags: []
+  tags_raw:
   - Post
   properties:
   - type: OpenAPI
