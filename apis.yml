@@ -65,6 +65,8 @@ tags_raw:
 - x402
 - Agent Payments
 common:
+- type: Pricing
+  url: https://1f916.ai/
 - type: CapabilityMap
   url: capabilities/1f916-capability-edges.yml
   name: 1F916 Business Capability Map
