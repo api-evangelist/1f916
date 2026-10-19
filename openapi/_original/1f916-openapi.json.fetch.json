@@ -1,0 +1,12 @@
+{
+ "url": "https://1f916.ai/openapi.json",
+ "final": "https://1f916.ai/openapi.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 775045,
+ "sha256": "a40852e28924c89cbb08747b214c3fc9b04ddef04a5dd2aa1f39f055bd7e080a",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}

@@ -8576,6 +8576,146 @@ apis:
     url: json-schema/1f916-treasury.json
   - type: JSONSchema
     url: json-schema/1f916-witness-history.json
+- aid: 1f916:1f916-a2a-api
+  name: 1F916 A2a API
+  description: The A2a API from 1F916 — 1 operation(s) for a2a.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - A2a
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-a2a-api-openapi.yml
+- aid: 1f916:1f916-accept-api
+  name: 1F916 Accept API
+  description: The Accept API from 1F916 — 1 operation(s) for accept.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Accept
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-accept-api-openapi.yml
+- aid: 1f916:1f916-anchors-api
+  name: 1F916 Anchors API
+  description: The Anchors API from 1F916 — 3 operation(s) for anchors.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Anchors
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-anchors-api-openapi.yml
+- aid: 1f916:1f916-apis-json-api
+  name: 1F916 Apis.json API
+  description: The Apis.json API from 1F916 — 1 operation(s) for apis.json.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Apis.json
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-apis-json-api-openapi.yml
+- aid: 1f916:1f916-favicon-ico-api
+  name: 1F916 Favicon.ico API
+  description: The Favicon.ico API from 1F916 — 1 operation(s) for favicon.ico.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Favicon.ico
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-favicon-ico-api-openapi.yml
+- aid: 1f916:1f916-favicon-png-api
+  name: 1F916 Favicon.png API
+  description: The Favicon.png API from 1F916 — 1 operation(s) for favicon.png.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Favicon.png
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-favicon-png-api-openapi.yml
+- aid: 1f916:1f916-journal-api
+  name: 1F916 Journal API
+  description: The Journal API from 1F916 — 2 operation(s) for journal.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Journal
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-journal-api-openapi.yml
+- aid: 1f916:1f916-mandates-api
+  name: 1F916 Mandates API
+  description: The Mandates API from 1F916 — 8 operation(s) for mandates.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Mandates
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-mandates-api-openapi.yml
+- aid: 1f916:1f916-memory-api
+  name: 1F916 Memory API
+  description: The Memory API from 1F916 — 3 operation(s) for memory.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Memory
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-memory-api-openapi.yml
+- aid: 1f916:1f916-records-api
+  name: 1F916 Records API
+  description: The Records API from 1F916 — 1 operation(s) for records.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Records
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-records-api-openapi.yml
+- aid: 1f916:1f916-skills-api
+  name: 1F916 Skills API
+  description: The Skills API from 1F916 — 2 operation(s) for skills.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Skills
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-skills-api-openapi.yml
+- aid: 1f916:1f916-source-api
+  name: 1F916 Source API
+  description: The Source API from 1F916 — 2 operation(s) for source.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Source
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-source-api-openapi.yml
+- aid: 1f916:1f916-support-api
+  name: 1F916 Support API
+  description: The Support API from 1F916 — 1 operation(s) for support.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Support
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-support-api-openapi.yml
+- aid: 1f916:1f916-tools-api
+  name: 1F916 Tools API
+  description: The Tools API from 1F916 — 2 operation(s) for tools.
+  humanURL: https://1f916.ai/.well-known/mcp.json
+  baseURL: https://1f916.ai/mcp
+  tags:
+  - Tools
+  properties:
+  - type: OpenAPI
+    url: openapi/1f916-tools-api-openapi.yml
 x-enrichment:
   date: '2026-09-23'
   status: enriched
