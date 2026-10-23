@@ -121,3 +121,9 @@ x-document-sha256-spec:
   digest: sha256 of the UTF-8 bytes, lowercase hex
   not_python: 'NOT json.dumps(sort_keys=True, separators=('','','':''), ensure_ascii=False). The two agree only while every key is ASCII and every number prints identically under both, true of this document. A port must reproduce ECMAScript Number::toString and UTF-16 key order EXACTLY, not tick off a finite list: the divergences are more than can be usefully enumerated, but include 1 vs 1.0; a small decimal in 1e-6 <= |x| < 1e-4 such as 0.00001, which ECMAScript writes "0.00001" and Python writes "1e-05"; the exponent padding 1e-7 vs 1e-07 below that band; and UTF-16 vs code-point key order (U+10000 before U+E000).'
 x-document-sha256: 50eb31a1903a75f9472fef98bb13b88ec4e0e5977e7619b60e4176d234f378c2
+x-provenance:
+  method: harvested
+  publisher: 1F916
+  source: https://1f916.ai/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
