@@ -8582,6 +8582,8 @@ apis:
   humanURL: https://1f916.ai/.well-known/mcp.json
   baseURL: https://1f916.ai/mcp
   tags:
+  - A2A
+  tags_raw:
   - A2a
   properties:
   - type: OpenAPI
@@ -8612,6 +8614,8 @@ apis:
   humanURL: https://1f916.ai/.well-known/mcp.json
   baseURL: https://1f916.ai/mcp
   tags:
+  - APIs.json
+  tags_raw:
   - Apis.json
   properties:
   - type: OpenAPI
@@ -8642,6 +8646,8 @@ apis:
   humanURL: https://1f916.ai/.well-known/mcp.json
   baseURL: https://1f916.ai/mcp
   tags:
+  - Journals
+  tags_raw:
   - Journal
   properties:
   - type: OpenAPI

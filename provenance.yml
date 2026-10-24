@@ -27,6 +27,12 @@ artifacts:
   hosts/1f916-hosts.yml:
     method: derived
     evidence: declared in the artifact
+  integrations/1f916-integration-edges.yml:
+    method: unknown
+    evidence: no authorship recorded
+  integrations/_index.yml:
+    method: generated
+    evidence: carries an API Evangelist house phrase
   json-schema/1f916-attest.json:
     method: unknown
     evidence: no authorship recorded
@@ -189,7 +195,7 @@ artifacts:
   json-schema/1f916-witness-history.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-10-11T110117.yml:
+  kin/checks-2026-10-17T182844.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-24T090406.yml:
@@ -210,7 +216,19 @@ artifacts:
   kin/score-2026-10-03T024842.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-09T213714.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
   kin/score-2026-10-11T110117.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-17T145100.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-17T153854.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-17T182844.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/1f916-lifecycle.yml:
